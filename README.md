@@ -254,4 +254,4 @@ The Makefile provides targets:
 
 ## License
 
-This library is released under the MIT license. Please see the `LICENSE` file for more information.
+This library is released under the MIT license. Please see the [LICENSE](LICENSE) file for more information.

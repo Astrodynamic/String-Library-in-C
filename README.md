@@ -107,7 +107,7 @@ int main() {
 
 ```c
 #include <stdio.h>
-#include <string.h>
+#include <castom_string.h>
 
 int main() {
     char haystack[] = "Hello, world!";
@@ -122,13 +122,13 @@ int main() {
 }
 ```
 
-### string.h Types
+### castom_string.h Types
 
 | No. | Variable | Description |
 | ------ | ------ | ------ |
 | 1 | castom_size_t | This is the unsigned integral type and is the result of the sizeof keyword. |
 	
-### string.h Macro
+### castom_string.h Macro
 
 | No. | Macro | Description |
 | ------ | ------ | ------ |

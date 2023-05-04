@@ -1,9 +1,9 @@
-#ifndef SRC_CASTOM_STRERROR_ADD_H_
-#define SRC_CASTOM_STRERROR_ADD_H_
+#ifndef STRING_INCLUDE_CASTOM_STRERROR_H_
+#define STRING_INCLUDE_CASTOM_STRERROR_H_
 
 #if __APPLE__
-#define CASTOM_ERRORS                                       \
-  static char *__castom_errors[] = {                        \
+#define CASTOM_ERRORS                                    \
+  static char *__castom_errors[] = {                     \
       "Undefined error: 0",                              \
       "Operation not permitted",                         \
       "No such file or directory",                       \
@@ -113,8 +113,8 @@
       "Interface output queue is full"};                 \
   const int __castom_err_num = 106
 #elif __linux__
-#define CASTOM_ERRORS                                         \
-  static char *__castom_errors[] = {                          \
+#define CASTOM_ERRORS                                      \
+  static char *__castom_errors[] = {                       \
       "Success",                                           \
       "Operation not permitted",                           \
       "No such file or directory",                         \
@@ -251,7 +251,7 @@
       "Memory page has hardware error"};                   \
   const int __castom_err_num = 133
 #else
-#define CASTOM_ERRORS                          \
+#define CASTOM_ERRORS                             \
   static char *__castom_errors[] = {CASTOM_NULL}; \
   const int __castom_err_num = 0
 #endif
@@ -262,23 +262,25 @@ void castom_strpsh(char *str, char c);
 void castom_add_digit_to_str(char *str, int digit);
 
 #if __linux__
-#define CASTOM_DEF_ERR_STR static char __castom_default_error[50] = "Unknown error "
+#define CASTOM_DEF_ERR_STR \
+  static char __castom_default_error[50] = "Unknown error "
 #elif __APPLE__
-#define CASTOM_DEF_ERR_STR static char __castom_default_error[50] = "Unknown error: "
+#define CASTOM_DEF_ERR_STR \
+  static char __castom_default_error[50] = "Unknown error: "
 #else
 #define CASTOM_DEF_ERR_STR \
   static char __castom_default_error[50] = "Unknown error of unknown OS: "
 #endif
 
-#define CASTOM_DEFAULT_ERROR(in, errnum)                \
+#define CASTOM_DEFAULT_ERROR(in, errnum)                   \
   castom_add_digit_to_str(__castom_default_error, errnum); \
   in = __castom_default_error
 
 #define CASTOM_GET_ERR_BY_NUMBER(in, errnum)       \
   if (errnum >= 0 && errnum <= __castom_err_num) { \
     in = (char *)__castom_errors[errnum];          \
-  } else {                                      \
+  } else {                                         \
     CASTOM_DEFAULT_ERROR(in, errnum);              \
   }
 
-#endif  // SRC_CASTOM_STRERROR_ADD_H_
+#endif  // STRING_INCLUDE_CASTOM_STRERROR_H_

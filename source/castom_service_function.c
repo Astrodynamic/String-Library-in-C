@@ -145,8 +145,8 @@ void cat_integer_to_str(char **str, char **end, castom_printf_spec *spec,
     transform_integer_16_to_str(str, end, spec, args);
 }
 
-void transform_integer_10_to_str(char **str, char **end, castom_printf_spec *spec,
-                                 va_list args) {
+void transform_integer_10_to_str(char **str, char **end,
+                                 castom_printf_spec *spec, va_list args) {
   unsigned long num;
   get_integer_from_parameter(&num, spec, args);
 
@@ -246,8 +246,8 @@ void cat_signed_int_to_str(long value, char **string, int radix,
   }
 }
 
-void transform_integer_8_to_str(char **str, char **end, castom_printf_spec *spec,
-                                va_list args) {
+void transform_integer_8_to_str(char **str, char **end,
+                                castom_printf_spec *spec, va_list args) {
   unsigned long num;
   get_integer_from_parameter(&num, spec, args);
 
@@ -284,8 +284,8 @@ int count_digit_in_num(signed long n, int base) {
   return res;
 }
 
-void transform_integer_16_to_str(char **str, char **end, castom_printf_spec *spec,
-                                 va_list args) {
+void transform_integer_16_to_str(char **str, char **end,
+                                 castom_printf_spec *spec, va_list args) {
   unsigned long num;
   get_integer_from_parameter(&num, spec, args);
 
@@ -401,8 +401,7 @@ void cat_default_float_to_str(char **str, char **end, castom_printf_spec *spec,
   double round = 5;
   int t_prec = spec->precision;
 
-  while (t_prec-- >= 0)
-    round /= 10;
+  while (t_prec-- >= 0) round /= 10;
 
   if ((num >= 0.5 && ((long)num % 2 && spec->precision == 0)) ||
       (num >= 0.5 && spec->precision != 0) ||
@@ -423,8 +422,8 @@ void cat_default_float_to_str(char **str, char **end, castom_printf_spec *spec,
     cat_symbol_in_str(str, *end, spec->field_width - lim, ' ');
 }
 
-void cat_scientific_float_to_str(char **str, char **end, castom_printf_spec *spec,
-                                 va_list args) {
+void cat_scientific_float_to_str(char **str, char **end,
+                                 castom_printf_spec *spec, va_list args) {
   long double num;
   get_float_from_parameter(&num, spec, args);
 
@@ -490,7 +489,7 @@ void cat_shrepres_float_to_str(char **str, char **end, castom_printf_spec *spec,
 
   if (spec->precision < 0) spec->precision = 6;
 
-  if (num < 10 || spec->precision  == 0) spec->precision++;
+  if (num < 10 || spec->precision == 0) spec->precision++;
 
   char buffer[128];
   gcvt((double)num, spec->precision, buffer);

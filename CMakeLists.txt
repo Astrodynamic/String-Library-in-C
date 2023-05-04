@@ -1,31 +1,41 @@
 cmake_minimum_required(VERSION 3.10)
-project(GrepUtility VERSION 1.0 LANGUAGES C)
+project(String VERSION 1.0 LANGUAGES C)
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_EXTENSIONS OFF)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
 include_directories(
-  ${CMAKE_SOURCE_DIR}/model
+  ${CMAKE_SOURCE_DIR}/include
 )
 
 set(HEADERS
-  ${CMAKE_SOURCE_DIR}/model/grep_utility.h
+  ${CMAKE_SOURCE_DIR}/include/castom_sprintf.h
+  ${CMAKE_SOURCE_DIR}/include/castom_strerror.h
+  ${CMAKE_SOURCE_DIR}/include/castom_string.h
 )
 
 set(SOURCES
-  ${CMAKE_SOURCE_DIR}/model/grep_utility.c
+  ${CMAKE_SOURCE_DIR}/source/castom_sprintf.c
+  ${CMAKE_SOURCE_DIR}/source/castom_strerror.c
+  ${CMAKE_SOURCE_DIR}/source/castom_string.c
+  ${CMAKE_SOURCE_DIR}/source/castom_fmt_decode.c
+  ${CMAKE_SOURCE_DIR}/source/castom_service_function.c
 )
 
 set(BUILD_FILES
   ${HEADERS}
   ${SOURCES}
-  ${CMAKE_SOURCE_DIR}/main.c
 )
 
-add_executable(${PROJECT_NAME}
+add_library(${PROJECT_NAME}
+  STATIC
   ${BUILD_FILES}
 )
+
+set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "")
+set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME ${CMAKE_PROJECT_NAME})
+set_target_properties(${PROJECT_NAME} PROPERTIES ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/lib)
 
 target_compile_options(
   ${PROJECT_NAME}

@@ -1,6 +1,7 @@
 #include "castom_sprintf.h"
 
-int castom_vsnprintf(char *buf, castom_size_t size, const char *fmt, va_list args) {
+int castom_vsnprintf(char *buf, castom_size_t size, const char *fmt,
+                     va_list args) {
   if (size > INT_MAX) return 0;
 
   char *str = buf;

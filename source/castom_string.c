@@ -5,7 +5,8 @@ void *castom_memchr(const void *str, int c, castom_size_t n) {
   if (str != CASTOM_NULL) {
     char *temp = (char *)str;
     int flag = 0;
-    for (castom_size_t i = 0; (i < n || i < castom_strlen(temp)) && !flag; ++i) {
+    for (castom_size_t i = 0; (i < n || i < castom_strlen(temp)) && !flag;
+         ++i) {
       if (*(temp + i) == (char)c) {
         ptr = (char *)str + i;
         flag = 1;
@@ -264,11 +265,9 @@ char *castom_strtok(char *str, const char *delim) {
   static char *save;
   int ch, flag = 1;
 
-  if (str == CASTOM_NULL)
-    str = save;
+  if (str == CASTOM_NULL) str = save;
   do {
-    if ((ch = *str++) == '\0')
-      flag = 0;
+    if ((ch = *str++) == '\0') flag = 0;
   } while (castom_strchr(delim, ch) && flag);
   if (flag) {
     --str;
@@ -310,7 +309,8 @@ void *castom_to_lower(const char *str) {
   return result;
 }
 
-void *castom_insert(const char *src, const char *str, castom_size_t start_index) {
+void *castom_insert(const char *src, const char *str,
+                    castom_size_t start_index) {
   char *result = CASTOM_NULL;
   if (start_index <= castom_strlen(src)) {
     char *temp = calloc((castom_strlen(src) - start_index + 1), sizeof(char));
@@ -345,7 +345,8 @@ void *castom_trim(const char *src, const char *trim_chars) {
     castom_strcpy(temp, src);
     if (trim_chars != CASTOM_NULL) {
       for (int i = castom_strlen(temp) - 1;
-           i >= 0 && castom_strchr(trim_chars, *(temp + i)) != CASTOM_NULL; --i) {
+           i >= 0 && castom_strchr(trim_chars, *(temp + i)) != CASTOM_NULL;
+           --i) {
         *(temp + i) = '\0';
       }
       while (*temp != '\0' && castom_strchr(trim_chars, *temp) != CASTOM_NULL) {
